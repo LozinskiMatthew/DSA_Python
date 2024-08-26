@@ -77,7 +77,7 @@ class DCLinkedList:
 
     def traverse(self):
             current = self.head
-            for i in range(self.length)
+            for i in range(self.length):
                 print(f"{i}. element: {current.node}\n")
                 current = current.next
 
@@ -108,17 +108,23 @@ class DCLinkedList:
         else:
             return -1
 
-    def set(self, index, value)
+    def set(self, index, value):
         if index < 0 or index > self.length - 1:
             return -1
         element = self.get(index)
         element.value = value
 
     def pop_first(self):
+        self.head.prev = None
+        self.head.next = None
+        self.head = self.head.next
+        self.tail.next = self.head
+        self.head.prev = self.tail
 
-    def pop_last(self):
 
-    def remove_element(self):
+    # def pop_last(self):
+
+    # def remove_element(self):
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -136,6 +142,8 @@ if __name__ == '__main__':
     DCLinkedList.prepend_element(493)
     print(DCLinkedList)
     DCLinkedList.backend_element(42)
+    print(DCLinkedList)
+    DCLinkedList.pop_first()
     print(DCLinkedList)
 
 
