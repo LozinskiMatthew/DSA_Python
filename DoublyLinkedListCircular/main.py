@@ -1,7 +1,5 @@
-# This is a sample Python script.
+#20 and 17 to be done, with new list (17)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 class Node:
     def __init__(self, value):
         self.prev = None
@@ -14,12 +12,14 @@ class DCLinkedList:
         if value is None:
             self.head = None
             self.tail = None
-        else:
-            self.node = Node(value)
-            self.head = self.node
-            self.tail = self.node
-            self.node.next = self.node
-            self.node.prev = self.node
+            self.length = 0
+            return
+        self.node = Node(value)
+        self.head = self.node
+        self.tail = self.node
+        self.node.next = self.node
+        self.node.prev = self.node
+        self.length = 1
 
     def __str__(self):
         if self.head is None:
@@ -27,24 +27,11 @@ class DCLinkedList:
         result = ""
         current = self.head
         while True:
-            result += str(current.node) + " -> "
+            result += str(current.node) + " <-> "
             current = current.next
             if current == self.head:
                 break
-        return result[:-4]
-
-    def add_element(self, index, value):
-        new_node = Node(value)
-        current = self.head
-        for _ in range(index):
-            current = current.next
-        new_node.prev = current
-        new_node.next = current.next
-        current.next.prev = new_node
-        current.next = new_node
-
-        if new_node.next == self.head:
-            self.tail = new_node
+        return result[:-5]
 
     def prepend_element(self, value):
         new_node = Node(value)
@@ -61,6 +48,78 @@ class DCLinkedList:
             self.tail.next = new_node
             self.head = new_node
 
+    def backend_element(self, value):
+        new_node = Node(value)
+        self.tail.next = new_node
+        self.head.prev = new_node
+        new_node.next = self.head
+        new_node.prev = self.tail
+        self.tail = new_node
+
+    def add_element(self, index, value):#Wherever
+        if index == 0:
+            self.prepend_element(value)
+        if index == self.length - 1:
+            self.backend_element(value)
+        if index >= self.length:
+            return -1
+        new_node = Node(value)
+        current = self.head
+        for _ in range(index):
+            current = current.next
+        new_node.prev = current
+        new_node.next = current.next
+        current.next.prev = new_node
+        current.next = new_node
+
+        if new_node.next == self.head:
+            self.tail = new_node
+
+    def traverse(self):
+            current = self.head
+            for i in range(self.length)
+                print(f"{i}. element: {current.node}\n")
+                current = current.next
+
+    def reverse_traverse(self):
+        current = self.tail
+        for i in range(self.length):
+            print(f"{i}. element: {current.node}\n")
+            current = current.prev
+
+    def search(self, value):
+        current = self.head
+        for index in range(self.length):
+            if current.node == value:
+                return tuple(index, current)
+
+    def get(self, index):
+        median = self.length // 2
+        if index <= median:
+            current = self.head
+            for _ in range(0, index + 1):
+                current = current.next
+            return current
+        elif index > median:
+            current = self.tail
+            for _ in range(median + 1, self.length):
+                current = current.prev
+            return current
+        else:
+            return -1
+
+    def set(self, index, value)
+        if index < 0 or index > self.length - 1:
+            return -1
+        element = self.get(index)
+        element.value = value
+
+    def pop_first(self):
+
+    def pop_last(self):
+
+    def remove_element(self):
+
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
@@ -76,5 +135,10 @@ if __name__ == '__main__':
     print(DCLinkedList)
     DCLinkedList.prepend_element(493)
     print(DCLinkedList)
+    DCLinkedList.backend_element(42)
+    print(DCLinkedList)
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
