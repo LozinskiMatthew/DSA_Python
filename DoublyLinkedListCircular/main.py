@@ -142,8 +142,21 @@ class DCLinkedList:
         to_pop.prev = None
         self.head.prev = self.tail
 
-    def remove(self):
-        to_remove =
+    def remove_element(self, index):
+        if index < 0 or index >= self.length:
+            return -1
+        if index == 0:
+            self.pop_first()
+            return
+        if index == self.length - 1:
+            self.pop_last()
+            return
+        to_remove = self.get(index)
+        to_remove.prev.next = to_remove.next
+        to_remove.next.prev = to_remove.prev
+        to_remove.next = None
+        to_remove.prev = None
+
 
     # def remove_element(self):
 
@@ -177,6 +190,8 @@ if __name__ == '__main__':
     print(tp)
 
     DCLinkedList.set(2, 1000)
+    print(DCLinkedList)
+    DCLinkedList.remove_element(1)
     print(DCLinkedList)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
