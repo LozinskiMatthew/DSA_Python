@@ -5,8 +5,8 @@ class Node:
 
 
 class LL:
-    def __init__(self, value=None):
-        if value = None:
+    def __init__(self, value = None):
+        if value is None:
             self.head = None
             self.tail = None
             self.length = 0
@@ -16,29 +16,42 @@ class LL:
         self.length = 1
 
     def __str__(self):
-        if self.head == None:
+        if self.head is None:
             return "Empty!"
         curr = self.head
-        stringed = []
-        stringed.append(str(curr.value))
-        while curr != tail:
+        stringed = [str(curr.value)]
+        while curr != self.tail:
             curr = curr.next
             stringed.append(str(curr.value))
         stringed.append(str(curr.value))
         return ", ".join(stringed)
 
     def isEmpty(self):
-        if self.head == None:
-            True
+        if self.head is None:
+            return True
         else:
-            False
+            return False
 
 
 class QueueList:
 
-    def __init__(self, nd=None):
-        self.ll = LL(nd)
-        if ll.isEmpty():
+    def __init__(self):
+        self.ll = LL()
+
+    def __str__(self):
+        return self.ll
+
+    def isEmpty(self):
+        self.ll.isEmpty()
+
+    def enqueue(self, value):
+        new_node = Node(value)
+        self.ll.tail.next = new_node
+        self.ll.tail = new_node
+
+    def dequeue(self):
+        to_dequeue = self.ll.head
+        self.ll.head = self.ll.head.next
 
 
 

@@ -1,4 +1,5 @@
 import Queue
+from Queue import Queue
 
 if __name__ == "__main__":
     q = Queue.Queue(4)
@@ -15,5 +16,5 @@ if __name__ == "__main__":
     print(q)
 
 
-
+    ll = Queue.LL(34)
 
