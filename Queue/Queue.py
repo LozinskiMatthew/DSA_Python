@@ -19,11 +19,10 @@ class LL:
         if self.head is None:
             return "Empty!"
         curr = self.head
-        stringed = [str(curr.value)]
-        while curr != self.tail:
-            curr = curr.next
+        stringed = []
+        while curr is not None:
             stringed.append(str(curr.value))
-        stringed.append(str(curr.value))
+            curr = curr.next
         return ", ".join(stringed)
 
     def isEmpty(self):
@@ -35,25 +34,34 @@ class LL:
 
 class QueueList:
 
-    def __init__(self):
-        self.ll = LL()
+    def __init__(self, value):
+        self.ll = LL(value)
 
     def __str__(self):
-        return self.ll
+        return str(self.ll)
 
     def isEmpty(self):
         self.ll.isEmpty()
 
     def enqueue(self, value):
         new_node = Node(value)
+        if self.ll.isEmpty():
+            self.ll.head = new_node
+            self.ll.tail = new_node
+            return
         self.ll.tail.next = new_node
         self.ll.tail = new_node
 
     def dequeue(self):
+        if self.ll.isEmpty():
+            return "Queue is empty"
         to_dequeue = self.ll.head
         self.ll.head = self.ll.head.next
+        to_dequeue.next = None
+        if self.ll.head is None:
+            self.ll.tail = None
 
-
+        return to_dequeue.value
 
 
 class Queue:
