@@ -1,27 +1,25 @@
-#Currently recursion will be done
 
 
-def fib(n: int):
-    li = [0, 1]
-    for i in range(2, n):
-        li.append(li[i - 1] + li[i - 2])
-    return li[n - 1]
+
+class TreeNode:
+   def __init__(self, value):
+      self.value = value
+      self.left = None
+      self.right = None
+
+   def __str__(self):
+      print(self.value)
+      
+
 
 if __name__ == "__main__":
-    print(fib(8))
+    
+   drinks = TreeNode("Drinks")
+   tea = TreeNode("tea")
+   cola = TreeNode("cola")
+   drinks.left = tea
+   drinks.right = cola
+  
 
 
 
-
-"""
-
-
-
-
-
-
-
-
-
-
-"""
